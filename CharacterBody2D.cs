@@ -20,42 +20,43 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 		// Input handling for movement
 		if (Input.IsActionPressed("ui_right"))
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("left_idle");
+			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("left_walk");
+			GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = false;
 			current_direction = "right";
 			velocity.X = Speed;
 			velocity.Y = 0;
 		}
 		else if (Input.IsActionPressed("ui_left"))
 		{
+			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("left_walk");
+			GetNode<AnimatedSprite2D>("AnimatedSprite2D").FlipH = true;
 			current_direction = "left";
 			velocity.X = -Speed;
 			velocity.Y = 0;
 		}
 		else if (Input.IsActionPressed("ui_down"))
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("front_idle");
+			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("front_walk");
 			current_direction = "down";
 			velocity.Y = Speed;
 			velocity.X = 0;
 		}
 		else if (Input.IsActionPressed("ui_up"))
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("back_idle");
+			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("back_walk");
 			current_direction = "up";
 			velocity.Y = -Speed;
 			velocity.X = 0;
 		}
 		else
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("idle");
 			velocity.Y = 0;
 			velocity.X = 0;
+
 		}
 
 		Velocity = velocity;
 		MoveAndSlide();
-
-
 	}
 
 
